@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "./App.css"
 
 
 interface PokemonProps {
@@ -24,7 +25,7 @@ const Pokemon = ({ id }: PokemonProps) => {
 
   useEffect(() => {
     getRandomPokemon();
-    const interval = setInterval(getRandomPokemon, 5000);
+    const interval = setInterval(getRandomPokemon, 7000);
     
     return () => {
         clearInterval(interval);
@@ -35,12 +36,14 @@ const Pokemon = ({ id }: PokemonProps) => {
       return (
         <div>
           <h1>{pokemon.name}</h1>
-          <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+          <img className="img-pokemon" src={pokemon.sprites.front_default} alt={pokemon.name} />
+          <h2>Abilities</h2>
           <ul>
             {pokemon.abilities.map((ability) => (
               <li key={ability.ability.name}>{ability.ability.name}</li>
             ))}
           </ul>
+          <h2>Type</h2>
           <ul>
             {pokemon.types.map((type) => (
               <li key={type.type.name}>{type.type.name}</li>
@@ -53,7 +56,7 @@ const Pokemon = ({ id }: PokemonProps) => {
   return (
     <div>
       {loading ? (
-        <p>Ya voy estoy cargando 👉👈</p>
+        <h1 className="uwu-text">Ya voy estoy cargando 👉👈</h1>
       ):(
         renderPokemon()
       )}
